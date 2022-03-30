@@ -1,0 +1,1 @@
+const repeatStr = (n, s) => [...Array(n).keys()].map( _ => s).join('');
