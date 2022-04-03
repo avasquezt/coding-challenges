@@ -1,0 +1,1 @@
+const uniTotal = string => string.split('').reduce((acc, char) => char.charCodeAt(0) +  acc, 0)

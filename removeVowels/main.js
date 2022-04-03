@@ -1,0 +1,1 @@
+const shortcut = string => string.split('').filter(n => !'aeiou'.includes(n)).join('')
