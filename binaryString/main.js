@@ -1,0 +1,1 @@
+const stringy = size => Array.from({length:size}, (_, index) => index % 2 === 0 ? '1' : '0').join('')
