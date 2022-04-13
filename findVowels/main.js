@@ -1,0 +1,1 @@
+const vowelIndices = word => word.split('').map((char, index) => [...'AEIOUYaeiouy'].includes(char) ? index + 1 : char).filter(char => Number.isInteger(char))
