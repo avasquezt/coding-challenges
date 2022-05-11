@@ -4,3 +4,10 @@ function hello(name) {
 
 // Write a function "greet" that returns "hello world!"
 const greet = _ => 'hello world!'
+
+
+class Solution{
+  static main(param1){
+  console.log('Hello World!');
+    }
+}
