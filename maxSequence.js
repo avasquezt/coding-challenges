@@ -9,15 +9,24 @@
 // P   Loop through the array, saving the maximum between the current contiguous subsequence or current number
 //     In each iteration, check if there is a previous sum bigger than the current one, if there is not one, save the current one as the biggest;
 
+// var maxSequence = function(arr){
+// // ...
+//     let negVals = arr.length ? false : true, sum = arr.reduce((acc, n) => {
+//         acc[1] = Math.max(acc[1] + n || n, n);
+//         acc[0] = Math.max(acc[1] || n, acc[0] || n);
+//         negVals = (n > 0) ? true : negVals;
+//         return acc;
+//     }, [])[0] || 0;
+//     return (negVals ? sum : 0);
+// }
+
 var maxSequence = function(arr){
 // ...
-    let negVals = arr.length ? false : true, sum = arr.reduce((acc, n) => {
-        acc[1] = Math.max(acc[1] + n || n, n);
-        acc[0] = Math.max(acc[1] || n, acc[0] || n);
-        negVals = (n > 0) ? true : negVals;
+    return arr.reduce((acc, n) => {
+        acc[1] = Math.max(acc[1] + n, n);
+        acc[0] = Math.max(...acc);
         return acc;
-    }, [])[0] || 0;
-    return (negVals ? sum : 0);
+    }, [0, 0])[0];
 }
 
 console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
