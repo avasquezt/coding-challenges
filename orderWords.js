@@ -1,3 +1,1 @@
-function order(words){
-    return words.split(' ').sort((a, b) => Number(a.replace(/[^0-9]/g, '')) - Number(b.replace(/[^0-9]/g, ''))).join(' ')
-  }
+function onePunch(items){return (typeof items == 'string' && items) ? items.split(' ').sort().join(' ').replace(/[ae]/ig, '') : 'Broken!';} //Don't leave this line!!
