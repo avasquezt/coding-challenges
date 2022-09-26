@@ -17,7 +17,14 @@ function oper(fct, s) {
 //     "def",
 //     "ghi",
 // ];
-    
-// console.log(diag_1_sym(arr).join('\n'));
+
+// function diag_1_sym(s){
+//     return s[0].split('').map((_, i) => s.map(row => row[i]));
+// }
+
+// function diag_2_sym(s){
+// return s[0].split('').map((_, i) => s.map(row => row[s[0].length - 1 - i]).reverse());
+// }
+
+// console.log(diag_2_sym(arr).join('\n'));
 // console.log(arr[0].split('').forEach((row, i) => console.log(arr.map(row => row[--arr[0].length - i]))))
-// console.log(rot90Clock(arr).join('\n'));
