@@ -11,3 +11,6 @@ console.log(topSecret('abcABC'));
 console.log(topSecret('Pb qdph lv Mrkq'));
 console.log(topSecret('wklv lv dq hadpsoh'));
 console.log(topSecret('Khoor Zruog!'));
+
+// const topSecret = str =>
+//   str.replace(/[a-z]/gi, val => String.fromCharCode(val.charCodeAt() + (`ABCabc`.includes(val) ? 23 : -3)));
