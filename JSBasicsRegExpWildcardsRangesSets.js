@@ -1,0 +1,1 @@
+var regex=/http(s)?:\/\/[a-z0-9.]+\.(com|net)/ig
