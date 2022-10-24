@@ -1,9 +1,6 @@
 function balance(book) {
     // your code
     // Please use .toFixed(2) to format numbers
-  }function balance(book) {
-    // your code
-    // Please use .toFixed(2) to format numbers
     book = book.replace(/[^\w\. \n]/g, '');
     book = book.split('\n').filter(line => line.length);
     let initialBalance = newBalance = Number(book[0]);
