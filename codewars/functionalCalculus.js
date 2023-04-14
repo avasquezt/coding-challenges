@@ -1,5 +1,5 @@
 /**
- * Calculates the of the functions expression
+ * Calculates the result of the functions expression
  */
 
 // let zero = op => op ? Math.floor(eval(0 + op)) : 0;
