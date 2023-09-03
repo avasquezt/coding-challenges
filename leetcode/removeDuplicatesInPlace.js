@@ -1,4 +1,5 @@
 /**
+ * Removes the duplicates from the input array
  * @param {number[]} nums
  * @return {number}
  */
