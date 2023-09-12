@@ -22,3 +22,12 @@ var reverseList = function(head) {
 
     return prev;
 };
+
+// Recursive
+
+var reverseList = function(head, next = null) {
+    if(!head) return next;
+    let curr = head.next;
+    head.next = next;
+    return reverseList(curr, head);
+};
