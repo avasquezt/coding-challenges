@@ -1,4 +1,5 @@
 /**
+ * Finds the indexes of two numbers that add up to the target number
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -10,4 +11,23 @@
         }
         diff[nums[i]] = i;
     }
+};
+
+/**
+ * When the input array is sorted
+ * O(n) time and O(1) space
+ */
+var twoSum = function(numbers, target) {
+    let i = 0;
+    let j = numbers.length - 1;
+    while(i < j){
+        const n = numbers[i] + numbers[j];
+        if(n === target) return [i + 1, j + 1];
+        if(n > target){
+            j--;
+        }else{
+            i++;
+        }
+    }
+    return -1;
 };
