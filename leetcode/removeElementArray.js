@@ -17,3 +17,16 @@ var removeElement = function(nums, val) {
     }
     return next + 1;
 };
+
+var removeElement = function(nums, val) {
+    let currIndex = 0;
+    let next = 0;
+    while(currIndex < nums.length){
+        if(nums[currIndex] != val){
+            [nums[currIndex], nums[next]] = [nums[next], nums[currIndex]];
+            next++;
+        }
+        currIndex++;
+    }
+    return next;
+};
