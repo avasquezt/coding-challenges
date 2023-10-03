@@ -24,3 +24,12 @@ var swapPairs = function(head) {
     }
     return head;
 };
+
+// Recursive
+var swapPairs = function(head) {
+    if(!head || !head.next) return head;
+    const n = head.next;
+    head.next = swapPairs(head.next.next);
+    n.next = head;
+    return n;
+};
