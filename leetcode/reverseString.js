@@ -12,3 +12,16 @@ var reverseString = function(s) {
     }
     return s;
 };
+
+/**
+ * Recursive  
+ */
+var reverseString = function(s) {
+    function reverse(i, j) {
+        if (i >= j) return;
+        [s[i], s[j]] = [s[j], s[i]];
+        reverse(i + 1, j - 1);
+    }
+    
+    reverse(0, s.length - 1);
+};
