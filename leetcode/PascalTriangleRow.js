@@ -14,3 +14,13 @@ var getRow = function(rowIndex) {
     return ans;
 };
 
+
+/**
+ * Recursive
+ */
+var getRow = function(rowIndex) {
+    if(rowIndex == 0) return [1];
+    const prev = getRow(rowIndex-1);
+    return Array.from(Array(rowIndex + 1), (_, i) => (prev[i - 1] || 0) + (prev[i] || 0));
+};
+
