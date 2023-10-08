@@ -28,3 +28,20 @@ var mergeTwoLists = function(list1, list2) {
     
     return head.next;
 };
+
+/**
+ * Recursive
+ */
+var mergeTwoLists = function(list1, list2) {
+    if(!list1 && !list2) return null;
+    if(!list1 || !list2) return list1 || list2;
+    let node;
+    if(list1.val < list2.val){
+        node = list1;
+        node.next = mergeTwoLists(list1.next, list2);
+    }else{
+        node = list2;
+        node.next = mergeTwoLists(list1, list2.next);
+    }
+    return node;
+};
