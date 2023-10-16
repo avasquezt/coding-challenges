@@ -50,3 +50,28 @@ var numIslands = function(grid) {
         return 1;
     }
 };
+
+// DFS
+var numIslands = function(grid) {
+    let count = 0;
+    for(let i = 0; i < grid.length; i++){
+        for(let j = 0; j < grid[0].length; j++){
+            if(grid[i][j] == '1'){
+                dfs(i, j, grid.length - 1, grid[0].length - 1);
+                count++;
+            }
+        }
+    }
+    return count;
+    
+    function dfs(i,j, m, n){
+        
+        if(grid[i][j] == '1'){
+            grid[i][j] = 0;
+            i < m && dfs(i + 1, j, m, n);
+            i && dfs(i - 1, j, m, n);
+            j < n && dfs(i, j + 1, m, n);
+            j && dfs(i, j - 1, m, n);
+        }
+    }
+};
