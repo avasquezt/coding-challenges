@@ -26,3 +26,23 @@
     }
     return n;
 };
+
+/**
+ * Find the answer to the Guess Game 
+ * @param {number} n
+ * @return {number}
+ */
+var guessNumber = function(n) {
+    let left = 1;
+    let right = n;
+    do{
+        const mid = left + Math.trunc((right - left) / 2);
+        const ans = guess(mid);
+        if(ans == 0) return mid;
+        if(ans < 0){
+            right = mid - 1;
+        }else{
+            left = mid + 1;
+        }
+    }while(true);
+};
