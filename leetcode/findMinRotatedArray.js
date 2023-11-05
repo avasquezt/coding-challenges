@@ -20,3 +20,20 @@ var findMin = function(nums) {
     }
     return nums[left];
 };
+
+// With duplicated elements
+var findMin = function(nums) {
+    if(nums.length == 1) return nums[0];
+    if(nums.at(-1) > nums.at(0)) return nums[0];
+    if(nums.at(-1) < nums.at(-2)) return nums.at(-1);
+    
+    let left = 0;
+    let right = nums.length - 1;
+    while(left < right){
+        const mid = left + Math.trunc((right - left) / 2);
+        if(nums[mid] > nums[right]) left = mid + 1;
+        else if(nums[mid] < nums[left]) right = mid;
+        else right--;
+    }
+    return nums[left];
+};
