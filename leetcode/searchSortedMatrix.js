@@ -16,3 +16,21 @@ var searchMatrix = function(matrix, target, start = [0, 0], end = [matrix.length
             searchMatrix(matrix, target, start, [n, m]) : 
             searchMatrix(matrix, target,  [n, m], end);
 };
+
+var searchMatrix = function(matrix, target){
+if(!matrix || matrix.length < 1 || matrix[0].length < 1) {
+        return false;
+    }
+    let col = matrix[0].length-1;
+    let row = 0;
+    while(col >= 0 && row <= matrix.length - 1) {
+        if(target == matrix[row][col]) {
+            return true;
+        } else if(target < matrix[row][col]) {
+            col--;
+        } else if(target > matrix[row][col]) {
+            row++;
+        }
+    }
+    return false;
+}
