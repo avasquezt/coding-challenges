@@ -42,3 +42,37 @@ var isSameTree = function(p, q) {
     if(p.val != q.val) return false;
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
+
+/**
+ * Recursive -> Iterative
+ */
+var isSameTree = function(p, q) {
+    const queue1 = new Queue();
+    const queue2 = new Queue();
+    
+    queue1.push(p);
+    queue2.push(q);
+    
+    while(!queue1.isEmpty()){
+        p = queue1.pop();
+        q = queue2.pop();
+        
+        if(!isValid(p, q)) return false;
+        
+        if(p){
+            queue1.push(p.left);
+            queue1.push(p.right);
+            queue2.push(q.left);
+            queue2.push(q.right);
+        }
+    }
+    
+    return true;
+    
+    function isValid(p, q){
+        if(p == null && q == null) return true;
+        if(p == null || q == null) return false;
+        if(p.val != q.val) return false;
+        return true;
+    }
+};
