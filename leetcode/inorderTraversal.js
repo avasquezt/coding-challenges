@@ -20,3 +20,22 @@ var inorderTraversal = function(root) {
         return ans.concat(dfs(node.left, ans), node.val, dfs(node.right, ans));
     }
 };
+
+/**
+ * Iterative
+ */
+var inorderTraversal = function(root) {
+    const ans = [];
+    const stack = [];
+    let curr = root;
+    while(curr || stack.length){
+        while(curr){
+            stack.push(curr);
+            curr = curr.left;
+        }
+        curr = stack.pop();
+        ans.push(curr.val);
+        curr = curr.right;
+    }
+    return ans;
+};
