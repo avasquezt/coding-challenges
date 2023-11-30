@@ -12,17 +12,28 @@
 * @return {number[]}
 */
 var preorderTraversal = function(root) {
-   const nodes = root ? [root] : [];
-   const order = [];
-   while(nodes.length > 0){
-       const current = nodes.pop();
-       order.push(current.val);
-       if(current.right){
-           nodes.push(current.right)
-       }
-       if(current.left){
-           nodes.push(current.left);
-       }
-   }
-   return order;
+    const stack = [];
+    const result = [];
+    stack.push(root);
+    while(stack.length){
+        const node = stack.pop();
+        if(node){
+            result.push(node.val);
+            stack.push(node.right);
+            stack.push(node.left);
+        }
+    }
+    return result;
+};
+
+/**
+ * Recursive
+ */
+var preorderTraversal = function(root, result = []) {
+    if(root){
+        result.push(root.val);
+        preorderTraversal(root.left, result);
+        preorderTraversal(root.right, result);
+    }
+    return result;
 };
