@@ -11,7 +11,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-// DPS
+// DFS
 var inorderTraversal = function(root) {
     return dfs(root, []);
     
@@ -36,6 +36,18 @@ var inorderTraversal = function(root) {
         curr = stack.pop();
         ans.push(curr.val);
         curr = curr.right;
+    }
+    return ans;
+};
+
+/**
+ * Recursive
+ */
+var inorderTraversal = function(root, ans = []) {
+    if(root){
+        inorderTraversal(root.left, ans);
+        ans.push(root.val);
+        inorderTraversal(root.right, ans);
     }
     return ans;
 };
