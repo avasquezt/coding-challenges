@@ -21,3 +21,21 @@ var postorderTraversal = function(root) {
         return arr;
     }
 };
+
+/**
+ * Iterative
+ */
+var postorderTraversal = function(root) {
+    const ans = [];
+    const stack = [];
+    stack.push(root);
+    while(stack.length){
+        const curr = stack.pop();
+        if(curr){
+            ans.push(curr.val);
+            stack.push(curr.left);
+            stack.push(curr.right);
+        }
+    }
+    return ans.reverse();
+};
