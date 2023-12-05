@@ -27,7 +27,26 @@ var levelOrder = function(root) {
             }
             n--;
         }
-        curr.length && result.push(curr);
+        if(curr.length) result.push(curr);
     }
     return result;
+};
+
+/**
+ * Recursive
+ */
+var levelOrder = function(root) {
+    return dfs(root, [], 0);
+    
+    function dfs(node, result, n){
+        if(node){
+            if(n >= result.length){
+                result.push([]);
+            }
+            result[n].push(node.val);
+            dfs(node.left, result, n + 1);
+            dfs(node.right, result, n + 1);
+        }
+        return result;
+    }
 };
