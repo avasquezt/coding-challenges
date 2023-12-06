@@ -11,9 +11,16 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+// Top-Down
 var maxDepth = function(root, n = 0) {
-    
     if(root === null) return n;
     n++;
     return Math.max(maxDepth(root.left, n), maxDepth(root.right, n));
+};
+
+// Bottom-Up
+var maxDepth = function(root) {
+    if(root === null) return 0;
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 };
