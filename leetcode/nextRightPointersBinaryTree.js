@@ -58,3 +58,26 @@ var connect = function(root) {
     }
     return root;
 };
+
+// Iterative, works with imcomplete trees
+var connect = function(root) {
+    let node = root;
+    const tmp = new Node();
+    while(node){
+        let currChild = tmp;
+        while(node){
+            if(node.left){
+                currChild.next = node.left;
+                currChild = currChild.next;
+            }
+            if(node.right){
+                currChild.next = node.right;
+                currChild = currChild.next;
+            }
+            node = node.next;
+        }
+        node = tmp.next;
+        tmp.next = null;
+    }
+    return root;
+};
