@@ -20,3 +20,15 @@ var searchBST = function(root, val) {
         return searchBST(root.left, val);
     }
 };
+
+// Iterative
+var searchBST = function(root, val) {
+    while(root && root.val != val){
+        if(root.val < val){
+            root = root.right;
+        }else{
+            root = root.left;
+        }
+    }
+    return root;
+};
