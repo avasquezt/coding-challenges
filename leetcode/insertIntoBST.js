@@ -24,3 +24,28 @@ var insertIntoBST = function(root, val) {
     }
     return root;
 };
+
+// Iterative
+var insertIntoBST = function(root, val) {
+    const node = new TreeNode(val);
+    if(!root) return node;
+    let curr = root;
+    while(curr){
+        if(val < curr.val){
+            if(curr.left){
+                curr = curr.left;
+            }else{
+                curr.left = node;
+                break;
+            }
+        }else{
+            if(curr.right){
+                curr = curr.right;
+            }else{
+                curr.right = node;
+                break;
+            }
+        }
+    }
+    return root;
+};
