@@ -12,16 +12,13 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    let result = true;
-    height(root);
-    return result;
-    
+    return height(root) != -1;
     
     function height(node){
         if(!node) return 0;
-        let left = height(node.left);
-        let right = height(node.right);
-        if(Math.abs(left - right) > 1) result = false;
-        return Math.max(left, right) + 1;
+        let l = height(node.left);
+        let r = height(node.right);
+        if(l == -1 || r == -1 || Math.abs(l - r) > 1) return -1;
+        return Math.max(l, r) + 1;
     }
 };
