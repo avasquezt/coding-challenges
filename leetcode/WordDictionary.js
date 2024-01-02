@@ -62,3 +62,57 @@ console.log(e.search('bad'));
 console.log(e.search('.ad'));
 console.log(e.search('.a.'));
 console.log(e.search('..d'));
+
+
+// 
+/*
+*******************************************************************************************************************
+*/
+var WordDictionary = function() {
+    this.data = [];
+    this.isEnd = false;
+};
+
+/** 
+ * @param {string} word
+ * @return {void}
+ */
+WordDictionary.prototype.addWord = function(word) {
+    let curr = this;
+    for(const char of word){
+        const n = char.charCodeAt(0) - 97;
+        if(!curr.data[n]){
+            curr.data[n] = new WordDictionary();
+        }
+        curr = curr.data[n];
+    }
+    curr.isEnd = true;
+};
+
+/** 
+ * @param {string} word
+ * @return {boolean}
+ */
+WordDictionary.prototype.search = function(word) {
+    
+    let curr = this;
+    
+    for(let i = 0; i < word.length; i++){
+        
+        const char = word[i];
+        const n = char.charCodeAt(0) - 97;
+        
+        if(char == '.'){
+            for(const dir of curr.data){
+                if(dir && dir.search(word.slice(i + 1))) return true;
+            }
+            return false;
+        }else if(!curr.data[n]){
+            return false;
+        }
+        
+        curr = curr.data[n];
+    }
+
+    return (curr && curr.isEnd) == true;
+};
