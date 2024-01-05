@@ -35,3 +35,24 @@ var findMaximumXOR = function(nums) {
         return node;
     }
 };
+
+// Using set and bit manipulation
+var findMaximumXOR = function(nums) {
+    let max = 0;
+    let mask = 0;
+    for(let i = 31; i >= 0; i--){
+        mask = mask | (1 << i);
+        const set = new Set();
+        for(const n of nums){
+            set.add(n & mask);
+        }
+        const tmp = max | (1 << i);
+        for(const prefix of set){
+            if(set.has(tmp ^ prefix)){
+                max = tmp;
+                break;
+            }
+        }
+    }
+    return max;
+};
