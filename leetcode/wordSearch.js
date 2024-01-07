@@ -1,10 +1,10 @@
 class Trie{
     data;
-    isEnd;
+    word;
     
     constructor(){
         this.data = [];
-        this.isEnd = false;
+        this.word = null;
     }
     
     add(word){
@@ -16,7 +16,7 @@ class Trie{
             }
             curr = curr.data[n];
         }
-        curr.isEnd = true;
+        curr.word = word;
     }
 }
 
@@ -27,36 +27,35 @@ class Trie{
  * @return {string[]}
  */
 var findWords = function(board, words) {
-const trie = new Trie();
-words.forEach(word => trie.add(word));
-const ans = [];
-for(let i = 0; i < board.length; i++){
-    for(let j = 0; j < board[0].length; j++){
-        ans.push(...check(board, i, j, {}, [], trie, ''));
+    const trie = new Trie();
+    words.forEach(word => trie.add(word));
+    const ans = [];
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[0].length; j++){
+            ans.push(...check(board, i, j, [], trie));
+        }
     }
-}
-
-return [...new Set(ans)];
-
-function check(board, i, j, visited, ans, trie, word){
-    if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[`${i},${j}`]){
+    
+    return ans;
+    
+    function check(board, i, j, ans, trie){
+        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] == '#'){
+            return ans;
+        }
+        const char =  board[i][j];
+        const n = char.charCodeAt(0) - 97;
+        if(trie.data[n]){
+            if(trie.data[n].word){
+                ans.push(trie.data[n].word);
+                trie.data[n].word = null;
+            }
+            board[i][j] = '#';
+            check(board, i + 1, j, ans, trie.data[n]);
+            check(board, i - 1, j, ans, trie.data[n]);
+            check(board, i, j + 1, ans, trie.data[n]);
+            check(board, i, j - 1, ans, trie.data[n]);
+            board[i][j] = char;
+        }
         return ans;
     }
-    const n = board[i][j].charCodeAt(0) - 97;
-    word += board[i][j];
-    if(trie.data[n]){
-        if(trie.data[n].isEnd){
-            ans.push(word);
-        }
-        visited[`${i},${j}`] = true;
-        check(board, i + 1, j, visited, ans, trie.data[n], word);
-        check(board, i - 1, j, visited, ans, trie.data[n], word);
-        check(board, i, j + 1, visited, ans, trie.data[n], word);
-        check(board, i, j - 1, visited, ans, trie.data[n], word);
-        visited[`${i},${j}`] = false;
-    }
-    return ans;
-}
-
-
 };
