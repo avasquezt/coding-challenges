@@ -19,3 +19,17 @@ function calculate(num1, operation, num2) {
          return null;
     } 
 }
+
+/**
+ * Calculates the requested operation and returns the result
+ * @param {number} a 
+ * @param {number} b 
+ * @param {string} sign 
+ * @returns {number|string}
+ */
+function calculator(a,b,sign){
+    if(/^\d+$/.test(a+b) && /\+|\-|\/|\*/.test(sign)){
+      return eval(a + sign + b);
+    }
+    return 'unknown value';
+}
