@@ -43,3 +43,31 @@ var spiralOrder = function(matrix) {
     }
     return ans;
 };
+
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+    let v = [0, matrix.length - 1];
+    let h = [0, matrix[0].length - 1];
+    let i = 1;
+    let p = 0;
+    const ans = [];
+    while(v[0] <= v[1] && h[0] <= h[1]){
+        for(let j = h[p]; j >= h[0] && j <= h[1]; j += i){
+            ans.push(matrix[v[p]][j]);
+        }
+        v[p] += i;
+        for(let j = v[p]; j >= v[0] && j <= v[1]; j += i){
+            ans.push(matrix[j][h[p^1]]);
+        }
+
+        i *= -1;
+        p ^= 1;
+        
+        h[p] += i;
+    }
+    return ans;
+};
