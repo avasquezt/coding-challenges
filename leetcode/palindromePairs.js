@@ -22,10 +22,12 @@ var palindromePairs = function(words) {
 class Trie{
     data;
     index;
+    list;
     
     constructor(){
         this.data = [];
-        this.index = null;
+        this.index = -1;
+        this.list = [];
     }
     
     add(word, index){
@@ -35,22 +37,15 @@ class Trie{
             if(!curr.data[n]){
                 curr.data[n] = new Trie();
             }
+            if(isPalindrome(word, 0, i)){
+                curr.list.push(index);
+            }
             curr = curr.data[n];
         }
         curr.index = index;
+        curr.list.push(index);
     }
     
-    words(ans = []){
-        for(const n in this.data){
-            if(n != null){
-                this.data[n].words(ans);
-            }
-        }
-        if(this.index != null){
-            ans.push(this.index);
-        }
-        return ans;
-    }
 }
 
 /**
@@ -63,36 +58,26 @@ var palindromePairs = function(words) {
     words.forEach((word, i) => trie.add(word, i));
     for(let i = 0; i < words.length; i++){
         let cur = trie;
-        let r = -1;
-        for(let j = 0; j < words[i]; j++){
+        for(let j = 0; j < words[i].length && cur; j++){
             const n = words[i][j].charCodeAt(0) - 97;
-            if(cur.data[n]){
-                cur = cur.data[n];
-            }else{
-                r = j;
-                break;
+            if(cur.index > -1 && cur.index != i && isPalindrome(words[i], j, words[i].length - 1)){
+                ans.push([i, cur.index]);
             }
+            cur = cur.data[n];
         }
-        if(r == -1 && cur){
-            const matches = cur.words([]);
-            matches.forEach(n => {
-                if(n != i && isPalindrome(words[i] + words[n])){
-                    ans.push([i, n]);
-                }   
-            })
-        }else{
-            if(cur.index != null && isPalindrome(words[i].slice(r))){
-                ans.push([cur.index, i]);
+        if(cur){
+            for(const n of cur.list){
+                if(n != i) ans.push([i, n]);
             }
         }
         
     }
     return ans;
-    
-    function isPalindrome(word){
-        for(let i = 0, n = word.length - 1; i < word.length / 2; i++){
-            if(word[i] != word[n - i]) return false;
+};
+
+function isPalindrome(word, start = 0, end = word.length - 1){
+        for(;start < end; start++, end--){
+            if(word[start] != word[end]) return false;
         }
         return true;
-    }
-};
+}
