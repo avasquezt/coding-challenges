@@ -81,3 +81,63 @@ function isPalindrome(word, start = 0, end = word.length - 1){
         }
         return true;
 }
+
+
+/**
+ * Solution using
+ */
+
+/**
+ * @param {string[]} words
+ * @return {number[][]}
+ */
+var palindromePairs = function(words) {
+    const map = new Map();
+    const ans = [];
+    for(let i = 0; i < words.length; i++){
+        map.set(words[i].split('').reverse().join(''), i);
+    }
+    
+//  Empty char
+    if(map.has('')){
+        const idx = map.get('');
+        for(let i = 0; i < words.length; i++){
+            if(i != idx && isPalindrome(words[i])){
+                ans.push([idx, i]);
+                ans.push([i, idx]);
+            }
+        }
+    }
+    
+//  String with their reverse
+    for(let i = 0; i < words.length; i++){
+        if(map.has(words[i]) && map.get(words[i]) != i){
+            ans.push([i, map.get(words[i])]);
+        }
+    }
+
+// find the pair s1, s2 that 
+    //case1 : s1[0:cut] is palindrome and s1[cut+1:] = reverse(s2) => (s2, s1)
+    //case2 : s1[cut+1:] is palindrome and s1[0:cut] = reverse(s2) => (s1, s2)
+    for(let i = 0; i < words.length; i++){
+        const word = words[i];
+        for(let j = 1; j < word.length; j++){
+            if(isPalindrome(word.slice(0, j))){
+                const cut = word.slice(j);
+                if(map.has(cut) && map.get(cut) != i){
+                    ans.push([map.get(cut),i]);
+                }
+            }
+            if(isPalindrome(word.slice(j))){
+                const cut = word.slice(0, j);
+                if(map.has(cut) && map.get(cut) != i){
+                    ans.push([i, map.get(cut)]);   
+                }
+            }
+        }
+    }
+    
+    return ans;
+    
+    
+};
