@@ -20,3 +20,28 @@ var levelOrder = function(root, level = 0, ans = []) {
     }
     return ans;
 };
+
+/**
+ * Iterative
+ */
+var levelOrder = function(root) {
+    if(!root) return [];
+    const ans = [];
+    let currQueue;
+    let nextQueue = new Queue();
+    nextQueue.push(root);
+    while(!nextQueue.isEmpty()){
+        currQueue = nextQueue;
+        nextQueue = new Queue();
+        const vals = [];
+        while(!currQueue.isEmpty()){
+            const curr = currQueue.pop();
+            vals.push(curr.val);
+            for(const node of curr.children){
+                nextQueue.push(node)
+            }
+        }
+        ans.push(vals);
+    }
+    return ans;
+};
