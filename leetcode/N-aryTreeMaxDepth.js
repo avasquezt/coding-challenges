@@ -20,3 +20,12 @@ var maxDepth = function(root) {
     }
     return max;
 };
+// Top down
+var maxDepth = function(root, count = 0) {
+    if(!root) return count;
+    let max = ++count;
+    for(const node of root.children){
+        max = Math.max(maxDepth(node, count), max);
+    }
+    return max;
+};
