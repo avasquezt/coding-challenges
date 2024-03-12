@@ -11,6 +11,8 @@
  * @param {Node|null} root
  * @return {number}
  */
+
+// DFS
 // Bottom up
 var maxDepth = function(root) {
     if(!root) return 0;
@@ -26,6 +28,26 @@ var maxDepth = function(root, count = 0) {
     let max = ++count;
     for(const node of root.children){
         max = Math.max(maxDepth(node, count), max);
+    }
+    return max;
+};
+
+// BFS
+// Iterative
+var maxDepth = function(root) {
+    if(!root) return 0;
+    const queue = new Queue([root]);
+    let max = 0;
+    while(!queue.isEmpty()){
+        max++;
+        let n = queue.size();
+        while(n){
+            const curr = queue.pop();
+            for(const node of curr.children){
+                queue.push(node);
+            }
+            n--;
+        }
     }
     return max;
 };
