@@ -1,0 +1,14 @@
+/**
+ * Merges the two input arrays
+ * @param {any[]} a 
+ * @param {any[]} b 
+ * @returns {any[]}
+ */
+function mergeArrays(a, b) {
+  const ans = [];
+  for(let i = 0; i <= Math.max(a.length, b.length); i++){
+    a[i] != null && ans.push(a[i]);
+    b[i] != null && ans.push(b[i]);
+  }
+  return ans;
+}
