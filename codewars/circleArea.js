@@ -9,3 +9,12 @@ function circleArea(radius) {
     }
     return Math.PI * radius ** 2;
 }
+
+/**
+ * Calculates the area of the input circle
+ * @param {Circle} circle 
+ * @returns {number}
+ */
+function circleArea(circle){
+  return Math.PI * circle.radius ** 2;
+}
