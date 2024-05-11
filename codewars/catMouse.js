@@ -18,3 +18,12 @@ function catMouse(x, j){
     if(pos['D'] > Math.min(pos['C'], pos['m']) && pos['D'] < Math.max(pos['C'], pos['m'])) return 'Protected!';
     return 'Caught!';
 }
+
+/**
+ * Finds out if the cat can catch the mouse from it's current position in the input string
+ * @param {string} x 
+ * @returns {string}
+ */
+function catMouse(x){
+  return x.match(/C.*m/)[0].length <= 5 ? 'Caught!' : 'Escaped!';
+}
